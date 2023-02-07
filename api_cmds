@@ -1,0 +1,5 @@
+curl -s -X POST -d '{"mary":"def456"}' localhost:8080/api/8/http/keyvals/tokens/
+
+curl -X POST -d '{ "server": "[upstreamservername]:[port]" }' -s 'http://localhost:8080/api/8/http/upstreams/[upstreamgroup]/servers'
+
+curl -X DELETE -s 'http://localhost:8080/api/8/http/upstreams/[upstreamgroup]/servers/0' #last bit of URL (0 in this case) is the position in the upstream that you want to delete

@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  auth1:
+      hostname: auth1
+      build: plus-build
+      volumes:
+          - ./auth/etc/nginx:/etc/nginx
+      expose:
+        - "80"
+
+  api1:
+      hostname: api1
+      build: plus-build
+      volumes:
+          - ./api/etc/nginx:/etc/nginx
+      expose:
+        - "80"
+
+  app1:
+      hostname: app1
+      build: plus-build
+      volumes:
+          - ./app/etc/nginx:/etc/nginx
+      expose:
+        - "80"
+      ports:
+        - 8080:80 #allow direct access to dashboard 
+
+  app2:
+      hostname: app2
+      build: plus-build
+      volumes:
+          - ./app/etc/nginx:/etc/nginx
+      expose:
+        - "80"
+      ports:
+        - 8081:80 #allow direct access to dashboard 
+
+  mainlb:
+      hostname: mainlb 
+      build: plus-build
+      volumes:
+          - ./mainlb/etc/nginx:/etc/nginx
+      ports:
+        - 80:80
+
