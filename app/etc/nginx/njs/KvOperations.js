@@ -1,7 +1,8 @@
 async function CheckKv (r) {
   if (!r.variables.myvar) {
     let newtoken = await r.subrequest("/auth"); 
-    var token = newtoken.requestText;
+    var token = newtoken.responseBody;
+    //var token = newtoken.requestText;
     r.variables.myvar = token;
   }
   else if (r.variables.myvar) {
