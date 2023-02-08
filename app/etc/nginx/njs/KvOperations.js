@@ -1,4 +1,5 @@
-import qs from "querystring";
+/*
+ * import qs from "querystring";
 
 async function GetNewToken(r) {
   //let token = await Promise.all(r.subrequest("/auth"));
@@ -20,20 +21,28 @@ function CheckKv(r) {
   //let token = "asdf1234";
   //let token = GetNewToken(r).then(alert);
   //let token = r.subrequest('/auth');
-  let token = r.variables.tokens;
+  let token = r.variables.text;
   
 
  
-
-/*
-  if (!r.variables.tokens) {
+  if (!r.variables.arg_text) {
     r.return (200, "zone not there\n");
   } else {
     r.return (200, "yay, zone exists\n");
   }
-*/
+  
+  r.return (200, "hi: " + lname + ", " + fname + ": " + token + "\n");
+  return;
 
-  r.return (200, "Hi: " + lname + ", " + fname + ": " + token + "\n");
 }
 
 export default {CheckKv, GetNewToken}
+*/
+
+function CheckKv (r) {
+		r.return(200, r.variables.myvar + '\n');
+		return;
+}
+
+export default { CheckKv };
+

@@ -1,4 +1,6 @@
-curl -s -X POST -d '{"mary":"def456"}' localhost:8080/api/8/http/keyvals/tokens/
+curl -s -X POST -d '{"mary":"abc123"}' localhost:8080/api/8/http/keyvals/tokens/
+curl -s -X POST -d '{"alice":"def456"}' localhost:8080/api/8/http/keyvals/tokens/
+curl -s -X POST -d '{"bob":"xyz789"}' localhost:8080/api/8/http/keyvals/tokens/
 
 curl -X POST -d '{ "server": "[upstreamservername]:[port]" }' -s 'http://localhost:8080/api/8/http/upstreams/[upstreamgroup]/servers'
 

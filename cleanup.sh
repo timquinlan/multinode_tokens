@@ -1,5 +1,5 @@
 #!/bin/sh
-grepstring="multinode_cache"
+grepstring="multinode_tokens"
 
 #cleanup containers
 for i in $(docker ps -a | grep $grepstring | awk '{print $1}')

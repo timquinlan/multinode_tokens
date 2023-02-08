@@ -30,7 +30,7 @@ services:
       hostname: app2
       build: plus-build
       volumes:
-          - ./app/etc/nginx:/etc/nginx
+        - ./app/etc/nginx:/etc/nginx:ro
       expose:
         - "80"
       ports:
