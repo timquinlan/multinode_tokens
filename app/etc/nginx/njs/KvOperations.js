@@ -1,19 +1,19 @@
 async function CheckKv (r) {
-  if (!r.variables.myvar) {
+  if (!r.variables.usertoken) {
     //
     //put user info validation code here
     //
     let newtoken = await r.subrequest("/auth"); 
     var token = newtoken.responseBody;
-    r.variables.myvar = token;
+    r.variables.usertoken = token;
     r.return(204);
     return;
   }
-  else if (r.variables.myvar) {
+  else if (r.variables.usertoken) {
     //
     //dummy key validation code
     //
-    if (r.variables.myvar.length < 10) {
+    if (r.variables.usertoken.length < 10) {
       r.return(403);
       return;
     }
