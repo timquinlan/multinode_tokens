@@ -2,4 +2,4 @@ curl -s -X POST -d '{"mary":"abc123"}' localhost:8080/api/8/http/keyvals/tokens/
 curl -s -X POST -d '{"alice":"def456"}' localhost:8080/api/8/http/keyvals/tokens/
 curl -s -X POST -d '{"bob":"xyz789"}' localhost:8080/api/8/http/keyvals/tokens/
 
-curl -s -X PATCH -d '{"bob": "0"}' localhost:8080/api/8/http/keyvals/tokens/
+curl -s -X PATCH -d '{"bob:curl/7.86.0": "0"}' localhost:8080/api/8/http/keyvals/tokens/

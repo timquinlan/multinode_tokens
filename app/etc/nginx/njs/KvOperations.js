@@ -11,7 +11,8 @@ async function CheckKv (r) {
   }
   else if (r.variables.myvar) {
     //
-    //put key validation code here
+    //dummy key validation code
+    //
     if (r.variables.myvar.length < 10) {
       r.return(403);
       return;
