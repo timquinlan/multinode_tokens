@@ -1,5 +1,7 @@
 # multinode_tokens
 
+This is a Proof of Concept to cache tokens in a shared key-pair db between nodes.  It is not production quality, example only!!!!!
+
 This demo requires an NGINX+ repository key and cert (the build will fail if the files are not in place). Place the .key and .crt files in ./plus-build of this repo before running docker-compose. If you are not a current NGINX+ customer, you can request a free 30-day trial at https://www.nginx.com/free-trial-request/
 
 In addition to the key/cert you will need:
