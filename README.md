@@ -13,6 +13,6 @@ Clone this repo and use docker-compose to bring up the environment:
 
 
     git clone https://github.com/timquinlan/multinode_tokens
-    cp nginx-repo.crt nginx-repo.key nginxplus_api_gw/plus-build
+    cp nginx-repo.crt nginx-repo.key multinode_tokens/plus-build
     cd multinode_tokens
     docker-compose up
