@@ -16,21 +16,21 @@ services:
       expose:
         - "80"
 
-  app1:
-      hostname: app1
+  proxy1:
+      hostname: proxy1
       build: plus-build
       volumes:
-          - ./app/etc/nginx:/etc/nginx
+          - ./proxy/etc/nginx:/etc/nginx
       expose:
         - "80"
       ports:
         - 8080:80 #allow direct access to dashboard 
 
-  app2:
-      hostname: app2
+  proxy2:
+      hostname: proxy2
       build: plus-build
       volumes:
-        - ./app/etc/nginx:/etc/nginx:ro
+        - ./proxy/etc/nginx:/etc/nginx:ro
       expose:
         - "80"
       ports:
