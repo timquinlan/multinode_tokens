@@ -4,8 +4,7 @@ async function CheckKv (r) {
     //put user info validation code here
     //
     let newtoken = await r.subrequest("/auth"); 
-    var token = newtoken.responseBody;
-    r.variables.usertoken = token;
+    r.variables.usertoken = newtoken.responseBody;
     r.return(204);
     return;
   }
