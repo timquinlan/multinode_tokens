@@ -50,7 +50,7 @@ Rerun the same request a few more times until the load balance selects the 2nd p
 
 The keys are configured to timeout after 300 seconds.  Once the key times out the proxy tier will need to reach out to the auth tier to get the new token.
 
-If you need to invalidate a key, simply use the NGINX API to do so:
+If you need to invalidate a key, simply use the NGINX API on one of the Proxy instances to do so:
 
     curl -s -X PATCH -d '{"user1:curl/7.86.0": "0"}' localhost:8080/api/8/http/keyvals/tokens/ 
 
