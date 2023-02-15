@@ -1,6 +1,6 @@
 # multinode_tokens
 
-It is not production quality, example only!!!!! For example the key generator and key verifyer are dummys.  If you put this code directly in prod, you're on your own </disclaimer>.
+It is not production quality, example only!!!!! For example the key generator and key verifyer are dummys.  
 
 This demo requires an NGINX+ repository key and cert (the build will fail if the files are not in place). Place the .key and .crt files in ./plus-build of this repo before running docker-compose. If you are not a current NGINX+ customer, you can request a free 30-day trial at https://www.nginx.com/free-trial-request/
 
@@ -20,8 +20,8 @@ Clone this repo and use docker-compose to bring up the environment:
 
 This is a Proof of Concept to cache tokens in a shared key-pair db between nodes.  It uses the NGINX+ key-value database (http://nginx.org/en/docs/http/ngx_http_keyval_module.html) to store the data, zone_sync (http://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html) to share the data and NGINX Javascript to access and verify the data.  
 
-This demo spins up 5 separate containers, all five are redirecting their access and error logs to the shell where you ran docker-compoes.  This way we can see what each tier does during the flow of requests.  iThe focal point is the proxy tier config (./proxy/etc/nginx/nginx.conf) and NJS script (./proxy/etc/nginx/njs/KvOperations.js).  The demo opens 3 ports
-* Mainlb opens port 80, this is the primary point in for the demo, this container will load balance to the proxy tier
+This demo spins up 5 separate containers, all five are redirecting their access and error logs to the shell where you ran docker-compose.  This way we can see what each tier does during the flow of requests.  The focal point is the proxy tier config (./proxy/etc/nginx/nginx.conf) and NJS script (./proxy/etc/nginx/njs/KvOperations.js).  The demo opens 3 ports
+* Mainlb opens port 80, this is the primary point in for the demo, this container will load balance the proxy tier
 * Proxy1 opens port 8080, this is so you can the NGINX API directly on Proxy1
 * Proxy2 opens port 8081, this is so you can the NGINX API directly on Proxy2
 
@@ -42,7 +42,7 @@ Rerun the same request and you will see the token still forwarded to the API tie
     multinode_tokens-proxy1-1  | 172.24.0.2 - - [14/Feb/2023:16:22:18 +0000] "GET / HTTP/1.0" 200 22 "-" "" "curl/7.86.0" "-" "app_upstreams" sn="_" rt=0.008 ua="172.24.0.3:80" us="200" ut="0.007" ul="22" cs=- e3deb39788f17e71ae042a30754687b6
     multinode_tokens-api1-1    | 172.24.0.6 - - [14/Feb/2023:16:22:18 +0000] "GET / HTTP/1.0" 200 22 "-" "" "curl/7.86.0" "-" "api_upstreams" sn="_" rt=0.000 ua="-" us="-" ut="-" ul="-" cs=- 24f97c5477273b2ce8d6e0ab5de5b888 token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJuZ2lueCIsInN1YiI6ImFsaWNlIiwiZm9vIjoxMjMsImJhciI6InFxIiwienl4IjpmYWxzZSwiZXhwIjoxNjc2MzkyMjQ2fQ.9GxCZ4VikNjG0On4vvIzdfd0KdKXrtsAwOOZPg4n_cY
 
-Rerun the same request a few more times until the load balance selects the 2nd proxy instance, since the keys are shared between the instances, the 2nd proxy doesn't need to call to the auth server since it has access to the cache:
+Rerun the same request a few more times until the load balancer selects the 2nd proxy instance, since the keys are shared between the instances, the 2nd proxy doesn't need to call to the auth server since it has access to the cache:
 
     multinode_tokens-mainlb-1  | 172.24.0.1 - - [14/Feb/2023:16:24:07 +0000] "GET / HTTP/1.1" 200 22 "-" "" "curl/7.86.0" "-" "localhost" sn="_" rt=0.002 ua="172.24.0.4:80" us="200" ut="0.002" ul="22" cs=- 9dda48ef1444d258c8e9f884095967de
     multinode_tokens-proxy2-1  | 172.24.0.2 - - [14/Feb/2023:16:24:07 +0000] "GET / HTTP/1.0" 200 22 "-" "" "curl/7.86.0" "-" "app_upstreams" sn="_" rt=0.001 ua="172.24.0.3:80" us="200" ut="0.001" ul="22" cs=- a3e7d6ce87e5d037683832964b9a294f
