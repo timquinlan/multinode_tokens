@@ -3,6 +3,10 @@ async function CheckKv (r) {
     //
     //put user info validation code here
     //
+    if (r.variables.http_remote_user.length < 2) {
+      r.return(403);
+      return;
+    }
     let newtoken = await r.subrequest("/auth"); 
     r.variables.usertoken = newtoken.responseBody;
     r.return(204);
