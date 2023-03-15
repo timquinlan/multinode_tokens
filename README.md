@@ -22,8 +22,8 @@ This is a Proof of Concept to cache tokens in a shared key-pair db between nodes
 
 This demo spins up 5 separate containers, all five are redirecting their access and error logs to the shell where you ran docker-compose.  This way we can see what each tier does during the flow of requests.  The focal point is the proxy tier config (./proxy/etc/nginx/nginx.conf) and NJS script (./proxy/etc/nginx/njs/KvOperations.js).  The demo opens 3 ports
 * Mainlb opens port 80, this is the primary point in for the demo, this container will load balance the proxy tier
-* Proxy1 opens port 8080, this is so you can the NGINX API directly on Proxy1
-* Proxy2 opens port 8081, this is so you can the NGINX API directly on Proxy2
+* Proxy1 opens port 8080, this is so you can access the NGINX API directly on Proxy1
+* Proxy2 opens port 8081, this is so you can access the NGINX API directly on Proxy2
 
 Once the demo containers are up and running, use curl to send a request:
 
