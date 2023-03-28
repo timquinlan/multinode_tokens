@@ -54,7 +54,7 @@ The keys are configured to timeout after 300 seconds.  Once the key times out th
 
 If you need to invalidate a key, simply use the NGINX API on one of the Proxy instances to do so:
 
-    curl -s -X PATCH -d '{"tim:172.24.0.1:curl/7.86.0": "0"}' localhost:8080/api/8/http/keyvals/tokens/ 
+    curl -s -X PATCH -d '{"user1:172.24.0.1:curl/7.86.0": "0"}' localhost:8080/api/8/http/keyvals/tokens/ 
 
 
 The reason we PATCH the value to 0 is that nulls do not sync.
